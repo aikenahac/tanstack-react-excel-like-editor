@@ -198,6 +198,11 @@ export function useCellSelection<TData>(
       const cellRef = cellRefs.current[key];
       if (cellRef && cellRef.current) {
         cellRef.current.focus();
+        cellRef.current.scrollIntoView({
+          behavior: "smooth",
+          block: "nearest",
+          inline: "nearest",
+        });
       }
     }
   }, [selectedCell]);

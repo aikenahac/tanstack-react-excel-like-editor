@@ -1,13 +1,14 @@
 import { clsx } from "clsx";
 import type { Table as TanStackTableType } from "@tanstack/react-table";
 import { flexRender } from "@tanstack/react-table";
+import { useVirtualizer } from "@tanstack/react-virtual";
 import { Table } from "../table";
 import type { CellCoordinates } from "./use-cell-selection";
 import { useCellSelection } from "./use-cell-selection";
 import { useCopyToClipboard } from "./use-copy-to-clipboard";
 import { parseCopyData } from "./parse-copy-data";
 import "./styles.css";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export interface DataTableProps<TData> {
   table: TanStackTableType<TData>;
@@ -30,6 +31,16 @@ export function DataTable<TData>({
   undo,
   redo,
 }: DataTableProps<TData>) {
+  const tableContainerRef = useRef<HTMLDivElement>(null);
+  const rows = table.getRowModel().rows;
+
+  const rowVirtualizer = useVirtualizer({
+    count: rows.length,
+    getScrollElement: () => tableContainerRef.current,
+    estimateSize: () => 35,
+    overscan: 10,
+  });
+
   const {
     selectedCell,
     selection: selectedRange,
@@ -40,7 +51,7 @@ export function DataTable<TData>({
     handleKeyDown,
     handleMouseDown,
     handleMouseEnter,
-  } = useCellSelection(table.getRowModel().rows, table.getVisibleFlatColumns());
+  } = useCellSelection(rows, table.getVisibleFlatColumns());
 
   const [, copy] = useCopyToClipboard();
 
@@ -103,113 +114,143 @@ export function DataTable<TData>({
     return undefined;
   }, [allowHistory, undo, redo]);
 
+  const virtualItems = rowVirtualizer.getVirtualItems();
+
   return (
     <div
       className={clsx("qz__data-table", {
         "qz__data-table--no-select": allowRangeSelection,
       })}
     >
-      <Table>
-        <Table.Header>
-          {table.getHeaderGroups().map((headerGroup) => (
-            <Table.Row key={headerGroup.id}>
-              {headerGroup.headers.map((header) => {
-                return (
-                  <Table.Head key={header.id}>
-                    {header.isPlaceholder
-                      ? null
-                      : flexRender(
-                          header.column.columnDef.header,
-                          header.getContext()
-                        )}
-                  </Table.Head>
-                );
-              })}
-            </Table.Row>
-          ))}
-        </Table.Header>
-        <Table.Body>
-          {table.getRowModel().rows?.length ? (
-            table.getRowModel().rows.map((row) => (
-              <Table.Row
-                key={row.id}
-                data-state={row.getIsSelected() && "selected"}
-              >
-                {row.getVisibleCells().map((cell) => {
-                  const cellRef = getCellRef(cell.row.id, cell.column.id);
-                  const isSelected = isCellSelected(
-                    cell.row.id,
-                    cell.column.id
-                  );
-                  const isInRange = isCellInRange(cell.row.id, cell.column.id);
-                  const isEditable = cell.column.columnDef.meta?.editable;
-
+      <div
+        ref={tableContainerRef}
+        style={{
+          height: "90vh",
+          overflow: "auto",
+        }}
+      >
+        <Table>
+          <Table.Header>
+            {table.getHeaderGroups().map((headerGroup) => (
+              <Table.Row key={headerGroup.id}>
+                {headerGroup.headers.map((header) => {
                   return (
-                    <Table.Data
-                      key={cell.id}
-                      ref={cellRef}
-                      tabIndex={0}
-                      onClick={() =>
-                        allowCellSelection &&
-                        handleClick(cell.row.id, cell.column.id)
-                      }
-                      onKeyDown={(e) => {
-                        allowCellSelection &&
-                          handleKeyDown(e, cell.row.id, cell.column.id);
-                        if (e.key === "Enter") {
-                          // Tricky way to allow triggering of edit mode on Enter press
-                          // Call the child's handleKeyDownOnView method directly
-                          const editableCell = cellRef.current?.querySelector(
-                            ".qz__data-table__editable-cell--viewing"
-                          );
-                          if (editableCell) {
-                            const event = new KeyboardEvent("keydown", {
-                              key: "Enter",
-                              bubbles: true,
-                              cancelable: true,
-                            });
-
-                            editableCell.dispatchEvent(event);
-                          }
-                        }
-                      }}
-                      onMouseDown={() =>
-                        allowRangeSelection &&
-                        handleMouseDown(cell.row.id, cell.column.id)
-                      }
-                      onMouseEnter={() =>
-                        allowRangeSelection &&
-                        handleMouseEnter(cell.row.id, cell.column.id)
-                      }
-                      data-row-id={cell.row.id}
-                      data-column-id={cell.column.id}
-                      className={clsx({
-                        "qz__data-table__cell--selected": isSelected,
-                        "qz__data-table__cell--range": !isSelected && isInRange,
-                        "qz__data-table__cell--editable": isEditable,
-                      })}
-                    >
-                      {flexRender(
-                        cell.column.columnDef.cell,
-                        cell.getContext()
-                      )}
-                    </Table.Data>
+                    <Table.Head key={header.id}>
+                      {header.isPlaceholder
+                        ? null
+                        : flexRender(
+                            header.column.columnDef.header,
+                            header.getContext()
+                          )}
+                    </Table.Head>
                   );
                 })}
               </Table.Row>
-            ))
-          ) : (
-            <Table.Row>
-              <Table.Data
-                colSpan={table.getVisibleFlatColumns().length}
-                className="qz__no-data-message"
-              >
-                No data.
-              </Table.Data>
-            </Table.Row>
-          )}
-        </Table.Body>
-      </Table>
+            ))}
+          </Table.Header>
+          <Table.Body>
+            {rows.length > 0 ? (
+              <>
+                <tr style={{ height: `${virtualItems[0]?.start ?? 0}px` }} />
+                {virtualItems.map((virtualRow) => {
+                  const row = rows[virtualRow.index];
+                  return (
+                    <Table.Row
+                      key={row.id}
+                      data-state={row.getIsSelected() && "selected"}
+                      style={{
+                        height: `${virtualRow.size}px`,
+                      }}
+                    >
+                      {row.getVisibleCells().map((cell) => {
+                        const cellRef = getCellRef(cell.row.id, cell.column.id);
+                        const isSelected = isCellSelected(
+                          cell.row.id,
+                          cell.column.id
+                        );
+                        const isInRange = isCellInRange(
+                          cell.row.id,
+                          cell.column.id
+                        );
+                        const isEditable = cell.column.columnDef.meta?.editable;
+
+                        return (
+                          <Table.Data
+                            key={cell.id}
+                            ref={cellRef}
+                            tabIndex={0}
+                            onClick={() =>
+                              allowCellSelection &&
+                              handleClick(cell.row.id, cell.column.id)
+                            }
+                            onKeyDown={(e) => {
+                              allowCellSelection &&
+                                handleKeyDown(e, cell.row.id, cell.column.id);
+                              if (e.key === "Enter") {
+                                const editableCell =
+                                  cellRef.current?.querySelector(
+                                    ".qz__data-table__editable-cell--viewing"
+                                  );
+                                if (editableCell) {
+                                  const event = new KeyboardEvent("keydown", {
+                                    key: "Enter",
+                                    bubbles: true,
+                                    cancelable: true,
+                                  });
+
+                                  editableCell.dispatchEvent(event);
+                                }
+                              }
+                            }}
+                            onMouseDown={() =>
+                              allowRangeSelection &&
+                              handleMouseDown(cell.row.id, cell.column.id)
+                            }
+                            onMouseEnter={() =>
+                              allowRangeSelection &&
+                              handleMouseEnter(cell.row.id, cell.column.id)
+                            }
+                            data-row-id={cell.row.id}
+                            data-column-id={cell.column.id}
+                            className={clsx({
+                              "qz__data-table__cell--selected": isSelected,
+                              "qz__data-table__cell--range":
+                                !isSelected && isInRange,
+                              "qz__data-table__cell--editable": isEditable,
+                            })}
+                          >
+                            {flexRender(
+                              cell.column.columnDef.cell,
+                              cell.getContext()
+                            )}
+                          </Table.Data>
+                        );
+                      })}
+                    </Table.Row>
+                  );
+                })}
+                <tr
+                  style={{
+                    height: `${
+                      rowVirtualizer.getTotalSize() -
+                      (virtualItems[virtualItems.length - 1]?.end ?? 0)
+                    }px`,
+                  }}
+                />
+              </>
+            ) : (
+              <Table.Row>
+                <Table.Data
+                  colSpan={table.getVisibleFlatColumns().length}
+                  className="qz__no-data-message"
+                >
+                  No data.
+                </Table.Data>
+              </Table.Row>
+            )}
+          </Table.Body>
+        </Table>
+      </div>
     </div>
   );
 }

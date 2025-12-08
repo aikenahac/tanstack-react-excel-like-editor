@@ -22,7 +22,7 @@ interface EditableCellProps<TData, TValue> extends CellContext<TData, TValue> {
 
 export function EditableCell<TData, TValue>({
   getValue,
-  row: { index: rowId }, // TODO: better to use id instead of index because if we want row DnD, index will change. This is hard to do because we can't iterate over rows as easily.
+  row: { index: rowId },
   column: { id: colId },
   table,
   renderInput,
@@ -57,15 +57,11 @@ export function EditableCell<TData, TValue>({
   };
 
   const handleKeyDownOnEdit = (e: React.KeyboardEvent) => {
-    if (e.key === "Enter") {
+    if (e.key === "Enter" || e.key === "Tab") {
       handleEndEditing();
     } else if (e.key === "Escape") {
       cancelEditing();
-    } else if (e.key === "Tab") {
-      handleEndEditing();
     } else {
-      // Prevent Arrow key events from being picked up by the cell selection event
-      // handlers to allow users to use the arrow keys to navigate the input field
       e.stopPropagation();
     }
   };

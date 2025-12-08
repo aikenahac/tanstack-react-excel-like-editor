@@ -15,7 +15,6 @@
   border-radius: var(--border-md);
 }
 
-/* TODO: make this the same color as the table component on hover color but make that one darker first for better visibility */
 .qz__data-table__cell--range {
   background-color: #dbe1ff;
 }
