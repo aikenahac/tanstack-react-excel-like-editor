@@ -54,10 +54,8 @@
 
 .pr__table__row {
   border-bottom-width: 1px;
-  transition-property: color, background-color, border-color,
-    text-decoration-color, fill, stroke;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 300ms;
+  height: 30px;
+  max-height: 30px;
 }
 
 .pr__table__row--hover:hover {
@@ -84,8 +82,13 @@
 }
 
 .pr__table__data {
-  padding: 1rem;
+  padding: 0.5rem;
   vertical-align: middle;
+  height: 30px;
+  max-height: 30px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .pr__table__caption {

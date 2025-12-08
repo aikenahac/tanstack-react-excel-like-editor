@@ -7,25 +7,21 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "id",
     header: "ID",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("id")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("id"),
+    size: 120,
   },
   {
     accessorKey: "name",
     header: "Name",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "110px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="text" autoFocus {...props} value={props.value as string} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="text" autoFocus {...props} value={props.value as string} />
+        )}
+      />
     ),
+    size: 110,
     meta: {
       editable: true,
     },
@@ -33,43 +29,33 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "parent",
     header: "Parent",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("parent")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("parent"),
+    size: 100,
   },
   {
     accessorKey: "storage",
     header: "Storage",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("storage")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("storage"),
+    size: 100,
   },
   {
     accessorKey: "project",
     header: "Project",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "150px" }}>
-        {row.getValue("project")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("project"),
+    size: 150,
   },
   {
     accessorKey: "description",
     header: "Description",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "200px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="text" autoFocus {...props} value={props.value as string} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="text" autoFocus {...props} value={props.value as string} />
+        )}
+      />
     ),
+    size: 200,
     meta: {
       editable: true,
     },
@@ -78,15 +64,14 @@ export const columns: Array<ColumnDef<Strain>> = [
     accessorKey: "temperature",
     header: "Temp (°C)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "80px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 80,
     meta: {
       editable: true,
     },
@@ -95,15 +80,14 @@ export const columns: Array<ColumnDef<Strain>> = [
     accessorKey: "ph",
     header: "pH",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "70px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 70,
     meta: {
       editable: true,
     },
@@ -112,15 +96,14 @@ export const columns: Array<ColumnDef<Strain>> = [
     accessorKey: "viability",
     header: "Viability (%)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "90px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 90,
     meta: {
       editable: true,
     },
@@ -128,52 +111,39 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "cellCount",
     header: "Cell Count",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("cellCount")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("cellCount"),
+    size: 100,
   },
   {
     accessorKey: "plasmid",
     header: "Plasmid",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("plasmid")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("plasmid"),
+    size: 120,
   },
   {
     accessorKey: "marker",
     header: "Marker",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("marker")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("marker"),
+    size: 100,
   },
   {
     accessorKey: "medium",
     header: "Medium",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("medium")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("medium"),
+    size: 120,
   },
   {
     accessorKey: "osmolarity",
     header: "Osmolarity",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "90px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 90,
     meta: {
       editable: true,
     },
@@ -182,15 +152,14 @@ export const columns: Array<ColumnDef<Strain>> = [
     accessorKey: "oxygenLevel",
     header: "O2 Level",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "80px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 80,
     meta: {
       editable: true,
     },
@@ -199,15 +168,14 @@ export const columns: Array<ColumnDef<Strain>> = [
     accessorKey: "glucoseConc",
     header: "Glucose (g/L)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 100,
     meta: {
       editable: true,
     },
@@ -215,25 +183,21 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "ethanolTolerance",
     header: "EtOH Tolerance",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("ethanolTolerance")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("ethanolTolerance"),
+    size: 120,
   },
   {
     accessorKey: "growthRate",
     header: "Growth Rate",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.01" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.01" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 100,
     meta: {
       editable: true,
     },
@@ -241,25 +205,21 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "flocculation",
     header: "Flocculation",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("flocculation")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("flocculation"),
+    size: 100,
   },
   {
     accessorKey: "attenuation",
     header: "Attenuation (%)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "110px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 110,
     meta: {
       editable: true,
     },
@@ -267,34 +227,27 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "fermentationTime",
     header: "Ferment Time (h)",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("fermentationTime")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("fermentationTime"),
+    size: 120,
   },
   {
     accessorKey: "stressResistance",
     header: "Stress Resistance",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "130px" }}>
-        {row.getValue("stressResistance")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("stressResistance"),
+    size: 130,
   },
   {
     accessorKey: "purityLevel",
     header: "Purity (%)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "80px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 80,
     meta: {
       editable: true,
     },
@@ -302,34 +255,27 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "contamination",
     header: "Contamination",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "110px" }}>
-        {row.getValue("contamination")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("contamination"),
+    size: 110,
   },
   {
     accessorKey: "geneticStability",
     header: "Genetic Stability",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "130px" }}>
-        {row.getValue("geneticStability")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("geneticStability"),
+    size: 130,
   },
   {
     accessorKey: "mutationRate",
     header: "Mutation Rate",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.001" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.001" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 100,
     meta: {
       editable: true,
     },
@@ -337,25 +283,21 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "enzymicActivity",
     header: "Enzymic Activity",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("enzymicActivity")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("enzymicActivity"),
+    size: 120,
   },
   {
     accessorKey: "metabolicRate",
     header: "Metabolic Rate",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "110px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.01" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.01" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 110,
     meta: {
       editable: true,
     },
@@ -363,25 +305,21 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "proteinExpression",
     header: "Protein Expression",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "130px" }}>
-        {row.getValue("proteinExpression")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("proteinExpression"),
+    size: 130,
   },
   {
     accessorKey: "lipidContent",
     header: "Lipid Content (%)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 120,
     meta: {
       editable: true,
     },
@@ -389,79 +327,57 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "carbSource",
     header: "Carbon Source",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("carbSource")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("carbSource"),
+    size: 120,
   },
   {
     accessorKey: "nitrogenSource",
     header: "Nitrogen Source",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "130px" }}>
-        {row.getValue("nitrogenSource")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("nitrogenSource"),
+    size: 130,
   },
   {
     accessorKey: "biomarkers",
     header: "Biomarkers",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "150px" }}>
-        {row.getValue("biomarkers")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("biomarkers"),
+    size: 150,
   },
   {
     accessorKey: "generation",
     header: "Generation",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "90px" }}>
-        {row.getValue("generation")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("generation"),
+    size: 90,
   },
   {
     accessorKey: "passage",
     header: "Passage",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "80px" }}>
-        {row.getValue("passage")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("passage"),
+    size: 80,
   },
   {
     accessorKey: "freezeThawCycles",
     header: "Freeze/Thaw",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("freezeThawCycles")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("freezeThawCycles"),
+    size: 100,
   },
   {
     accessorKey: "storageCondition",
     header: "Storage Condition",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "130px" }}>
-        {row.getValue("storageCondition")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("storageCondition"),
+    size: 130,
   },
   {
     accessorKey: "qualityScore",
     header: "Quality Score",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+        )}
+      />
     ),
+    size: 100,
     meta: {
       editable: true,
     },
@@ -469,34 +385,27 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "batchNumber",
     header: "Batch #",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("batchNumber")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("batchNumber"),
+    size: 100,
   },
   {
     accessorKey: "laboratoryId",
     header: "Lab ID",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("laboratoryId")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("laboratoryId"),
+    size: 100,
   },
   {
     accessorKey: "notes",
     header: "Notes",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "200px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="text" autoFocus {...props} value={props.value as string} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="text" autoFocus {...props} value={props.value as string} />
+        )}
+      />
     ),
+    size: 200,
     meta: {
       editable: true,
     },
@@ -504,88 +413,63 @@ export const columns: Array<ColumnDef<Strain>> = [
   {
     accessorKey: "applications",
     header: "Applications",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "150px" }}>
-        {row.getValue("applications")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("applications"),
+    size: 150,
   },
   {
     accessorKey: "riskAssessment",
     header: "Risk Assessment",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "130px" }}>
-        {row.getValue("riskAssessment")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("riskAssessment"),
+    size: 130,
   },
   {
     accessorKey: "complianceStatus",
     header: "Compliance",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("complianceStatus")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("complianceStatus"),
+    size: 100,
   },
   {
     accessorKey: "lastModified",
     header: "Last Modified",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("lastModified")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("lastModified"),
+    size: 120,
   },
   {
     accessorKey: "createdBy",
     header: "Created By",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        {row.getValue("createdBy")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("createdBy"),
+    size: 120,
   },
   {
     accessorKey: "createdOn",
     header: "Created On",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("createdOn")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("createdOn"),
+    size: 100,
   },
   {
     accessorKey: "version",
     header: "Version",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "80px" }}>
-        {row.getValue("version")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("version"),
+    size: 80,
   },
   {
     accessorKey: "status",
     header: "Status",
-    cell: ({ row }) => (
-      <div style={{ display: "flex", alignItems: "center", width: "100px" }}>
-        {row.getValue("status")}
-      </div>
-    ),
+    cell: ({ row }) => row.getValue("status"),
+    size: 100,
   },
   {
     accessorKey: "conductivity",
     header: "Conductivity (mS/cm²)",
     cell: (cell) => (
-      <div style={{ display: "flex", alignItems: "center", width: "120px" }}>
-        <EditableCell
-          {...cell}
-          renderInput={(props) => (
-            <input type="number" step="0.01" autoFocus {...props} value={props.value as string} />
-          )}
-        />
-      </div>
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input type="number" step="0.01" autoFocus {...props} value={props.value as string} />
+        )}
+      />
     ),
+    size: 120,
     meta: {
       editable: true,
     },

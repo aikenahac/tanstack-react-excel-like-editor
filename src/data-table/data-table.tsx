@@ -37,8 +37,8 @@ export function DataTable<TData>({
   const rowVirtualizer = useVirtualizer({
     count: rows.length,
     getScrollElement: () => tableContainerRef.current,
-    estimateSize: () => 35,
-    overscan: 10,
+    estimateSize: () => 30,
+    overscan: 50,
   });
 
   const {
