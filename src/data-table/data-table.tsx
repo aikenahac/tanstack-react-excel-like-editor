@@ -4,6 +4,7 @@ import { flexRender } from "@tanstack/react-table";
 import { useVirtualizer } from "@tanstack/react-virtual";
 import { Table } from "../table";
 import type { CellCoordinates } from "./use-cell-selection";
+import type { PasteResult } from "./use-data-table";
 import { useCellSelection } from "./use-cell-selection";
 import { useCopyToClipboard } from "./use-copy-to-clipboard";
 import { parseCopyData } from "./parse-copy-data";
@@ -16,7 +17,8 @@ export interface DataTableProps<TData> {
   allowRangeSelection?: boolean;
   allowHistory?: boolean;
   allowPaste?: boolean;
-  paste?: (selectedCell: CellCoordinates, clipboardData?: string) => void;
+  paste?: (selectedCell: CellCoordinates, clipboardData?: string) => PasteResult;
+  onPasteComplete?: (result: PasteResult) => void;
   undo?: () => void;
   redo?: () => void;
 }
@@ -28,6 +30,7 @@ export function DataTable<TData>({
   allowHistory = false,
   allowPaste = false,
   paste,
+  onPasteComplete,
   undo,
   redo,
 }: DataTableProps<TData>) {
@@ -84,7 +87,11 @@ export function DataTable<TData>({
     if (allowPaste && paste && selectedCell) {
       const pasteHandler = (event: ClipboardEvent) => {
         const clipboardData = event.clipboardData?.getData("Text");
-        paste(selectedCell, clipboardData);
+        const result = paste(selectedCell, clipboardData);
+
+        if (onPasteComplete && result.totalChanges > 0) {
+          onPasteComplete(result);
+        }
       };
 
       document.addEventListener("paste", pasteHandler);
@@ -92,7 +99,7 @@ export function DataTable<TData>({
     }
 
     return undefined;
-  }, [allowPaste, selectedCell, paste]);
+  }, [allowPaste, selectedCell, paste, onPasteComplete]);
 
   useEffect(() => {
     if (allowHistory && undo && redo) {

@@ -5,6 +5,20 @@ import type { CellCoordinates } from "./use-cell-selection";
 import { parsePasteData } from "./parse-paste-data";
 import { useCallback, useEffect, useState } from "react";
 
+export interface CellChange {
+  rowIndex: number;
+  rowId: string;
+  columnId: string;
+  columnHeader: string;
+  oldValue: unknown;
+  newValue: unknown;
+}
+
+export interface PasteResult {
+  changes: CellChange[];
+  totalChanges: number;
+}
+
 export interface UseDataTableProps<TData extends RowData, TValue>
   extends Omit<TableOptions<TData>, "getCoreRowModel"> {
   columns: ColumnDef<TData, TValue>[];
@@ -59,8 +73,12 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
   });
 
   const handleTablePaste = useCallback(
-    (selectedCell: CellCoordinates, clipboardData: string | undefined) => {
-      if (!clipboardData) return;
+    (selectedCell: CellCoordinates, clipboardData: string | undefined): PasteResult => {
+      if (!clipboardData) {
+        return { changes: [], totalChanges: 0 };
+      }
+
+      const changes: CellChange[] = [];
 
       handleSetData(oldData => {
         const parsedData = parsePasteData(clipboardData);
@@ -83,9 +101,24 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
             const targetColIndex = startColIndex + colIndex;
             if (targetColIndex < columns.length) {
               const columnId = columns[targetColIndex].id;
-              if (newData[targetRowIndex][columnId] !== newValue) {
-                (newData[targetRowIndex] as Record<string, any>)[columnId] =
-                  newValue;
+              const oldValue = newData[targetRowIndex][columnId];
+
+              if (oldValue !== newValue) {
+                const column = columns[targetColIndex];
+                const columnHeader = typeof column.columnDef.header === 'string'
+                  ? column.columnDef.header
+                  : columnId;
+
+                changes.push({
+                  rowIndex: targetRowIndex,
+                  rowId: rows[targetRowIndex].id,
+                  columnId,
+                  columnHeader,
+                  oldValue,
+                  newValue,
+                });
+
+                (newData[targetRowIndex] as Record<string, any>)[columnId] = newValue;
               }
             }
           });
@@ -93,6 +126,11 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
 
         return newData;
       });
+
+      return {
+        changes,
+        totalChanges: changes.length,
+      };
     },
     [table, handleSetData]
   );

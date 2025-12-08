@@ -1,4 +1,4 @@
-import { DataTable, useDataTable } from "./data-table";
+import { DataTable, useDataTable, PasteResult } from "./data-table";
 import { columns } from "./columns";
 import { strains } from "./strains";
 
@@ -8,6 +8,11 @@ export default function App() {
     data: strains,
     history: true,
   });
+
+  const handlePasteComplete = (result: PasteResult) => {
+    console.log(`Paste completed: ${result.totalChanges} cells changed`);
+    console.log(JSON.stringify(result.changes))
+  };
 
   return (
     <div
@@ -25,6 +30,7 @@ export default function App() {
         allowHistory={true}
         allowPaste={true}
         paste={paste}
+        onPasteComplete={handlePasteComplete}
         undo={undo}
         redo={redo}
       />
