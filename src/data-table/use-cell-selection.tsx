@@ -1,6 +1,13 @@
 import * as React from "react";
 import type { Column, Row } from "@tanstack/react-table";
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from "react";
+import {
+  useCallback,
+  useEffect,
+  useLayoutEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
 export interface CellCoordinates {
   rowId: string;
@@ -14,10 +21,11 @@ export interface Selection {
 
 export function useCellSelection<TData>(
   rows: Row<TData>[],
-  columns: Column<TData>[]
+  columns: Column<TData>[],
 ) {
-  const [selectedCell, setSelectedCell] =
-    useState<CellCoordinates | null>(null);
+  const [selectedCell, setSelectedCell] = useState<CellCoordinates | null>(
+    null,
+  );
   const [selection, setSelection] = useState<Selection | null>(null);
   const [isSelecting, setIsSelecting] = useState(false);
 
@@ -55,7 +63,7 @@ export function useCellSelection<TData>(
         selectedCell.columnId === cellColumnId
       );
     },
-    [selectedCell]
+    [selectedCell],
   );
 
   const isCellInRange = useCallback(
@@ -79,13 +87,13 @@ export function useCellSelection<TData>(
 
       return isRowInRange && isColumnInRange;
     },
-    [selection, columnIndexMap, rowIndexMap]
+    [selection, columnIndexMap, rowIndexMap],
   );
 
   const handleKeyDown = (
     e: React.KeyboardEvent<HTMLDivElement>,
     rowId: string,
-    columnId: string
+    columnId: string,
   ) => {
     const { key } = e;
 
@@ -145,17 +153,14 @@ export function useCellSelection<TData>(
     }
   };
 
-  const handleMouseDown = useCallback(
-    (rowId: string, columnId: string) => {
-      setSelectedCell({ rowId, columnId });
-      setSelection({
-        start: { rowId, columnId },
-        end: { rowId, columnId },
-      });
-      setIsSelecting(true);
-    },
-    []
-  );
+  const handleMouseDown = useCallback((rowId: string, columnId: string) => {
+    setSelectedCell({ rowId, columnId });
+    setSelection({
+      start: { rowId, columnId },
+      end: { rowId, columnId },
+    });
+    setIsSelecting(true);
+  }, []);
 
   const handleMouseEnter = useCallback(
     (rowId: string, columnId: string) => {
@@ -169,7 +174,7 @@ export function useCellSelection<TData>(
         });
       }
     },
-    [isSelecting]
+    [isSelecting],
   );
 
   const handleMouseUp = useCallback(() => {

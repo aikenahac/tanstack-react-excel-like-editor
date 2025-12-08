@@ -21,7 +21,7 @@ const initialUseHistoryState = <T,>(initialPresent: T): HistoryState<T> => ({
 function useHistoryStateReducer<T>(
   state: HistoryState<T>,
   action: Action<T>,
-  maxHistorySize: number
+  maxHistorySize: number,
 ): HistoryState<T> {
   const { past, present, future } = state;
 
@@ -70,12 +70,12 @@ export function useHistoryState<T>(initialPresent: T, maxHistorySize = 20) {
     (state: HistoryState<T>, action: Action<T>) => {
       return useHistoryStateReducer(state, action, maxHistorySize);
     },
-    [maxHistorySize]
+    [maxHistorySize],
   );
 
   const [state, dispatch] = useReducer(
     reducerWrapper,
-    initialUseHistoryState(initialPresentRef.current)
+    initialUseHistoryState(initialPresentRef.current),
   );
 
   const canUndo = state.past.length !== 0;
@@ -91,13 +91,13 @@ export function useHistoryState<T>(initialPresent: T, maxHistorySize = 20) {
 
   const set = useCallback(
     (newPresent: T) => dispatch({ type: "SET", newPresent }),
-    []
+    [],
   );
 
   const clear = useCallback(
     () =>
       dispatch({ type: "CLEAR", initialPresent: initialPresentRef.current }),
-    []
+    [],
   );
 
   return {

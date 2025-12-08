@@ -11,7 +11,7 @@ export default function App() {
 
   const handlePasteComplete = (result: PasteResult) => {
     console.log(`Paste completed: ${result.totalChanges} cells changed`);
-    console.log(JSON.stringify(result.changes))
+    console.log(JSON.stringify(result.changes));
   };
 
   return (

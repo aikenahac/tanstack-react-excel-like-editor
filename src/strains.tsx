@@ -1,4 +1,4 @@
-import strainsData from './data/strains.json';
+import strainsData from "./data/strains.json";
 
 export const storageOptions = {
   banked: "banked",

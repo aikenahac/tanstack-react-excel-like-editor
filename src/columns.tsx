@@ -17,7 +17,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="text" autoFocus {...props} value={props.value as string} />
+          <input
+            type="text"
+            autoFocus
+            {...props}
+            value={props.value as string}
+          />
         )}
       />
     ),
@@ -51,7 +56,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="text" autoFocus {...props} value={props.value as string} />
+          <input
+            type="text"
+            autoFocus
+            {...props}
+            value={props.value as string}
+          />
         )}
       />
     ),
@@ -67,7 +77,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -83,7 +98,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -99,7 +120,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -139,7 +165,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -155,7 +186,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -171,7 +208,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -193,7 +236,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.01" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.01"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -215,7 +264,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -243,7 +297,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -271,7 +331,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.001" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.001"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -293,7 +359,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.01" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.01"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -315,7 +387,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -373,7 +451,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.1" autoFocus {...props} value={props.value as number} />
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
         )}
       />
     ),
@@ -401,7 +485,12 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="text" autoFocus {...props} value={props.value as string} />
+          <input
+            type="text"
+            autoFocus
+            {...props}
+            value={props.value as string}
+          />
         )}
       />
     ),
@@ -465,7 +554,13 @@ export const columns: Array<ColumnDef<Strain>> = [
       <EditableCell
         {...cell}
         renderInput={(props) => (
-          <input type="number" step="0.01" autoFocus {...props} value={props.value as string} />
+          <input
+            type="number"
+            step="0.01"
+            autoFocus
+            {...props}
+            value={props.value as string}
+          />
         )}
       />
     ),

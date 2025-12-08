@@ -41,7 +41,7 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
 
   const handleSetData = useCallback(
     (newData: TData[] | ((prevData: TData[]) => TData[])) => {
-      setData(prevData => {
+      setData((prevData) => {
         const updatedData =
           newData instanceof Function ? newData(prevData) : newData;
         if (history) {
@@ -50,18 +50,18 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
         return updatedData;
       });
     },
-    [history, setPresent]
+    [history, setPresent],
   );
 
   const updateCellData = useCallback(
     (rowIndex: number, columnId: string, value: unknown) => {
-      handleSetData(old =>
+      handleSetData((old) =>
         old.map((row, index) =>
-          index === rowIndex ? { ...row, [columnId]: value } : row
-        )
+          index === rowIndex ? { ...row, [columnId]: value } : row,
+        ),
       );
     },
-    [handleSetData]
+    [handleSetData],
   );
 
   const table = useReactTable({
@@ -69,28 +69,31 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
     columns,
     getCoreRowModel: getCoreRowModel(),
     meta: { updateCellData },
-    ...props
+    ...props,
   });
 
   const handleTablePaste = useCallback(
-    (selectedCell: CellCoordinates, clipboardData: string | undefined): PasteResult => {
+    (
+      selectedCell: CellCoordinates,
+      clipboardData: string | undefined,
+    ): PasteResult => {
       if (!clipboardData) {
         return { changes: [], totalChanges: 0 };
       }
 
       const changes: CellChange[] = [];
 
-      handleSetData(oldData => {
+      handleSetData((oldData) => {
         const parsedData = parsePasteData(clipboardData);
-        const newData = oldData.map(row => ({ ...row }));
+        const newData = oldData.map((row) => ({ ...row }));
 
         const rows = table.getRowModel().rows;
         const columns = table.getVisibleFlatColumns();
         const startRowIndex = rows.findIndex(
-          row => row.id === selectedCell.rowId
+          (row) => row.id === selectedCell.rowId,
         );
         const startColIndex = columns.findIndex(
-          col => col.id === selectedCell.columnId
+          (col) => col.id === selectedCell.columnId,
         );
 
         parsedData.forEach((row, rowIndex) => {
@@ -105,9 +108,10 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
 
               if (oldValue !== newValue) {
                 const column = columns[targetColIndex];
-                const columnHeader = typeof column.columnDef.header === 'string'
-                  ? column.columnDef.header
-                  : columnId;
+                const columnHeader =
+                  typeof column.columnDef.header === "string"
+                    ? column.columnDef.header
+                    : columnId;
 
                 changes.push({
                   rowIndex: targetRowIndex,
@@ -118,7 +122,8 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
                   newValue,
                 });
 
-                (newData[targetRowIndex] as Record<string, any>)[columnId] = newValue;
+                (newData[targetRowIndex] as Record<string, any>)[columnId] =
+                  newValue;
               }
             }
           });
@@ -132,7 +137,7 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
         totalChanges: changes.length,
       };
     },
-    [table, handleSetData]
+    [table, handleSetData],
   );
 
   useEffect(() => {
@@ -152,6 +157,6 @@ export function useDataTable<TData extends Record<string, any>, TValue>({
     redo,
     clear,
     canUndo,
-    canRedo
+    canRedo,
   };
 }

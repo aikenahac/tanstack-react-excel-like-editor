@@ -10,7 +10,7 @@ interface EditableCellProps<TData, TValue> extends CellContext<TData, TValue> {
   renderInput: (props: {
     value: TValue;
     onChange: (
-      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+      e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
     ) => void;
     onBlur: () => void;
     onValueChange: (value: string) => void;
@@ -41,11 +41,15 @@ export function EditableCell<TData, TValue>({
   const onValueChange = (value: string) => {
     setValue(value as unknown as TValue);
     setIsEditing(false);
-    (table.options.meta as TableMeta<TData> | undefined)?.updateCellData?.(rowId, colId, value);
+    (table.options.meta as TableMeta<TData> | undefined)?.updateCellData?.(
+      rowId,
+      colId,
+      value,
+    );
   };
 
   const onChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>,
   ) => {
     const newValue = e.target.value;
     setValue(newValue as unknown as TValue);
@@ -53,7 +57,11 @@ export function EditableCell<TData, TValue>({
 
   const handleEndEditing = () => {
     setIsEditing(false);
-    (table.options.meta as TableMeta<TData> | undefined)?.updateCellData?.(rowId, colId, value);
+    (table.options.meta as TableMeta<TData> | undefined)?.updateCellData?.(
+      rowId,
+      colId,
+      value,
+    );
   };
 
   const handleKeyDownOnEdit = (e: React.KeyboardEvent) => {

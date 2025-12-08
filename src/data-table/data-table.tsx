@@ -17,7 +17,10 @@ export interface DataTableProps<TData> {
   allowRangeSelection?: boolean;
   allowHistory?: boolean;
   allowPaste?: boolean;
-  paste?: (selectedCell: CellCoordinates, clipboardData?: string) => PasteResult;
+  paste?: (
+    selectedCell: CellCoordinates,
+    clipboardData?: string,
+  ) => PasteResult;
   onPasteComplete?: (result: PasteResult) => void;
   undo?: () => void;
   redo?: () => void;
@@ -70,7 +73,7 @@ export function DataTable<TData>({
         const clipboardData = parseCopyData(
           selectedRange,
           table.getRowModel().rows,
-          table.getAllColumns()
+          table.getAllColumns(),
         );
 
         // TODO: it would be great to display a toast with success or error onCopy.
@@ -147,7 +150,7 @@ export function DataTable<TData>({
                         ? null
                         : flexRender(
                             header.column.columnDef.header,
-                            header.getContext()
+                            header.getContext(),
                           )}
                     </Table.Head>
                   );
@@ -173,11 +176,11 @@ export function DataTable<TData>({
                         const cellRef = getCellRef(cell.row.id, cell.column.id);
                         const isSelected = isCellSelected(
                           cell.row.id,
-                          cell.column.id
+                          cell.column.id,
                         );
                         const isInRange = isCellInRange(
                           cell.row.id,
-                          cell.column.id
+                          cell.column.id,
                         );
                         const isEditable = cell.column.columnDef.meta?.editable;
 
@@ -196,7 +199,7 @@ export function DataTable<TData>({
                               if (e.key === "Enter") {
                                 const editableCell =
                                   cellRef.current?.querySelector(
-                                    ".qz__data-table__editable-cell--viewing"
+                                    ".qz__data-table__editable-cell--viewing",
                                   );
                                 if (editableCell) {
                                   const event = new KeyboardEvent("keydown", {
@@ -228,7 +231,7 @@ export function DataTable<TData>({
                           >
                             {flexRender(
                               cell.column.columnDef.cell,
-                              cell.getContext()
+                              cell.getContext(),
                             )}
                           </Table.Data>
                         );
