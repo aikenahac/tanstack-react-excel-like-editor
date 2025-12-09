@@ -15,14 +15,7 @@ export default function App() {
   };
 
   return (
-    <div
-      style={{
-        maxWidth: "100%",
-        margin: "0 auto",
-        paddingTop: "40px",
-        paddingBottom: "40px",
-      }}
-    >
+    <div className="max-w-full mx-auto py-10">
       <DataTable
         table={table}
         allowCellSelection={true}

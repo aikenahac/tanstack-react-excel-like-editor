@@ -8,7 +8,6 @@ import type { PasteResult } from "./use-data-table";
 import { useCellSelection } from "./use-cell-selection";
 import { useCopyToClipboard } from "./use-copy-to-clipboard";
 import { parseCopyData } from "./parse-copy-data";
-import "./styles.css";
 import { useEffect, useRef } from "react";
 
 export interface DataTableProps<TData> {
@@ -128,17 +127,11 @@ export function DataTable<TData>({
 
   return (
     <div
-      className={clsx("qz__data-table", {
-        "qz__data-table--no-select": allowRangeSelection,
+      className={clsx("box-border border border-[hsl(240_5.9%_90%)] rounded-[var(--border-md)]", {
+        "select-none": allowRangeSelection,
       })}
     >
-      <div
-        ref={tableContainerRef}
-        style={{
-          height: "90vh",
-          overflow: "auto",
-        }}
-      >
+      <div ref={tableContainerRef} className="h-[90vh] overflow-auto">
         <Table>
           <Table.Header>
             {table.getHeaderGroups().map((headerGroup) => (
@@ -199,7 +192,7 @@ export function DataTable<TData>({
                               if (e.key === "Enter") {
                                 const editableCell =
                                   cellRef.current?.querySelector(
-                                    ".qz__data-table__editable-cell--viewing",
+                                    "[data-editable-cell-viewing]",
                                   );
                                 if (editableCell) {
                                   const event = new KeyboardEvent("keydown", {
@@ -223,10 +216,10 @@ export function DataTable<TData>({
                             data-row-id={cell.row.id}
                             data-column-id={cell.column.id}
                             className={clsx({
-                              "qz__data-table__cell--selected": isSelected,
-                              "qz__data-table__cell--range":
-                                !isSelected && isInRange,
-                              "qz__data-table__cell--editable": isEditable,
+                              "outline outline-[1.5px] outline-[#3d5aa9] -outline-offset-[2px] rounded-[var(--border-md)] focus-visible:outline focus-visible:outline-[1.5px] focus-visible:outline-[#3d5aa9] focus-visible:-outline-offset-[2px] focus-visible:rounded-[var(--border-md)]":
+                                isSelected,
+                              "bg-[#dbe1ff]": !isSelected && isInRange,
+                              "box-border p-0 cursor-text": isEditable,
                             })}
                           >
                             {flexRender(
@@ -252,7 +245,7 @@ export function DataTable<TData>({
               <Table.Row>
                 <Table.Data
                   colSpan={table.getVisibleFlatColumns().length}
-                  className="qz__no-data-message"
+                  className="h-24 text-center"
                 >
                   No data.
                 </Table.Data>

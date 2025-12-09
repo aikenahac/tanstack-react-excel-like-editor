@@ -1,6 +1,5 @@
 import * as React from "react";
 import { CellContext, TableMeta as TableMetaTS } from "@tanstack/react-table";
-import "./styles.css";
 import { useEffect, useState } from "react";
 
 export interface TableMeta<TData> extends TableMetaTS<TData> {
@@ -91,7 +90,7 @@ export function EditableCell<TData, TValue>({
     return (
       <div
         onDoubleClick={onDoubleClick}
-        className="qz__data-table__editable-cell--editing"
+        className="flex items-center box-border w-full h-full p-2 cursor-text [&_input]:w-full [&_input]:h-full [&_input]:border-none [&_input]:outline-none [&_input]:bg-transparent [&_input]:text-inherit [&_input]:font-inherit [&_input]:p-0"
         tabIndex={0}
       >
         {renderInput({
@@ -110,7 +109,8 @@ export function EditableCell<TData, TValue>({
     <div
       onKeyDown={handleKeyDownOnView}
       onDoubleClick={onDoubleClick}
-      className="qz__data-table__editable-cell--viewing"
+      className="w-full h-full p-2 overflow-hidden text-ellipsis whitespace-nowrap flex items-center"
+      data-editable-cell-viewing
       tabIndex={0}
     >
       {value ? String(value) : "-"}

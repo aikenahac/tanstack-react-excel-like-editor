@@ -1,4 +1,9 @@
-.App {
-  font-family: sans-serif;
-  text-align: center;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --border-md: 0.375rem;
+  }
 }
