@@ -569,4 +569,774 @@ export const columns: Array<ColumnDef<Strain>> = [
       editable: true,
     },
   },
+  {
+    accessorKey: "isolationDate",
+    header: "Isolation Date",
+    cell: ({ row }) => row.getValue("isolationDate"),
+    size: 110,
+  },
+  {
+    accessorKey: "harvestDate",
+    header: "Harvest Date",
+    cell: ({ row }) => row.getValue("harvestDate"),
+    size: 110,
+  },
+  {
+    accessorKey: "expiryDate",
+    header: "Expiry Date",
+    cell: ({ row }) => row.getValue("expiryDate"),
+    size: 110,
+  },
+  {
+    accessorKey: "testDate",
+    header: "Test Date",
+    cell: ({ row }) => row.getValue("testDate"),
+    size: 110,
+  },
+  {
+    accessorKey: "certificationDate",
+    header: "Cert Date",
+    cell: ({ row }) => row.getValue("certificationDate"),
+    size: 110,
+  },
+  {
+    accessorKey: "density",
+    header: "Density (g/mL)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.001"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "viscosity",
+    header: "Viscosity (cP)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "turbidity",
+    header: "Turbidity (NTU)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 110,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "colorValue",
+    header: "Color (EBC)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "clarityIndex",
+    header: "Clarity Index",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "sedimentLevel",
+    header: "Sediment (mg/L)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 110,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "foamStability",
+    header: "Foam Stability",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 110,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "yieldRate",
+    header: "Yield Rate (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "efficiency",
+    header: "Efficiency (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "potency",
+    header: "Potency (U/mL)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.01"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "concentration",
+    header: "Conc (mg/mL)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "dilutionFactor",
+    header: "Dilution",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 80,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "volumeMl",
+    header: "Volume (mL)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "weightGrams",
+    header: "Weight (g)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.01"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "moistureContent",
+    header: "Moisture (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 100,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "ashContent",
+    header: "Ash (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 80,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "proteinContent",
+    header: "Protein (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "carbContent",
+    header: "Carbs (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "fatContent",
+    header: "Fat (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 80,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "fiberContent",
+    header: "Fiber (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 80,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "saltContent",
+    header: "Salt (g/L)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "sugarContent",
+    header: "Sugar (g/L)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "alcoholContent",
+    header: "Alcohol (%)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.1"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "acidityLevel",
+    header: "Acidity",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            step="0.01"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 80,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "bitterLevel",
+    header: "Bitterness (IBU)",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 110,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "aromaScore",
+    header: "Aroma",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 70,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "flavorScore",
+    header: "Flavor",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 70,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "textureScore",
+    header: "Texture",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 70,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "appearanceScore",
+    header: "Appearance",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 90,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "overallScore",
+    header: "Overall",
+    cell: (cell) => (
+      <EditableCell
+        {...cell}
+        renderInput={(props) => (
+          <input
+            type="number"
+            autoFocus
+            {...props}
+            value={props.value as number}
+          />
+        )}
+      />
+    ),
+    size: 70,
+    meta: {
+      editable: true,
+    },
+  },
+  {
+    accessorKey: "sampleCode",
+    header: "Sample Code",
+    cell: ({ row }) => row.getValue("sampleCode"),
+    size: 100,
+  },
+  {
+    accessorKey: "lotNumber",
+    header: "Lot #",
+    cell: ({ row }) => row.getValue("lotNumber"),
+    size: 80,
+  },
+  {
+    accessorKey: "serialNumber",
+    header: "Serial #",
+    cell: ({ row }) => row.getValue("serialNumber"),
+    size: 90,
+  },
+  {
+    accessorKey: "catalogNumber",
+    header: "Catalog #",
+    cell: ({ row }) => row.getValue("catalogNumber"),
+    size: 90,
+  },
+  {
+    accessorKey: "vendorCode",
+    header: "Vendor Code",
+    cell: ({ row }) => row.getValue("vendorCode"),
+    size: 100,
+  },
+  {
+    accessorKey: "supplierName",
+    header: "Supplier",
+    cell: ({ row }) => row.getValue("supplierName"),
+    size: 100,
+  },
+  {
+    accessorKey: "manufacturerCode",
+    header: "Mfg Code",
+    cell: ({ row }) => row.getValue("manufacturerCode"),
+    size: 90,
+  },
+  {
+    accessorKey: "originCountry",
+    header: "Origin",
+    cell: ({ row }) => row.getValue("originCountry"),
+    size: 80,
+  },
+  {
+    accessorKey: "certificationCode",
+    header: "Cert Code",
+    cell: ({ row }) => row.getValue("certificationCode"),
+    size: 90,
+  },
+  {
+    accessorKey: "analysisMethod",
+    header: "Method",
+    cell: ({ row }) => row.getValue("analysisMethod"),
+    size: 90,
+  },
+  {
+    accessorKey: "testProtocol",
+    header: "Protocol",
+    cell: ({ row }) => row.getValue("testProtocol"),
+    size: 90,
+  },
+  {
+    accessorKey: "approvalStatus",
+    header: "Approval",
+    cell: ({ row }) => row.getValue("approvalStatus"),
+    size: 90,
+  },
+  {
+    accessorKey: "reviewStatus",
+    header: "Review",
+    cell: ({ row }) => row.getValue("reviewStatus"),
+    size: 80,
+  },
+  {
+    accessorKey: "auditDate",
+    header: "Audit Date",
+    cell: ({ row }) => row.getValue("auditDate"),
+    size: 100,
+  },
+  {
+    accessorKey: "inspectionDate",
+    header: "Inspect Date",
+    cell: ({ row }) => row.getValue("inspectionDate"),
+    size: 100,
+  },
 ];
