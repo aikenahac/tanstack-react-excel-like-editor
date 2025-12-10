@@ -138,7 +138,10 @@ export function DataTable<TData>({
               <Table.Row key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <Table.Head key={header.id}>
+                    <Table.Head
+                      key={header.id}
+                      style={{ width: `${header.getSize()}px` }}
+                    >
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -182,6 +185,7 @@ export function DataTable<TData>({
                             key={cell.id}
                             ref={cellRef}
                             tabIndex={0}
+                            style={{ width: `${cell.column.getSize()}px` }}
                             onClick={() =>
                               allowCellSelection &&
                               handleClick(cell.row.id, cell.column.id)

@@ -24,6 +24,7 @@ const Table: Partial<TableComponent> = React.forwardRef<
       ref={ref}
       className={clsx(
         "w-full text-sm leading-5 caption-bottom border-collapse border-0 border-solid border-[hsl(240_5.9%_90%)]",
+        "table-fixed",
         className
       )}
       {...props}
