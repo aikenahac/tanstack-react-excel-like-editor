@@ -7,36 +7,33 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 This is a React TypeScript application demonstrating an Excel-like data table with advanced features including cell selection, range selection, inline editing, copy/paste functionality, row virtualization, and undo/redo history.
 
 Built with:
-- React 18.2.0 with TypeScript 4.4.4
-- TanStack Table (v8.17.3) for table state management
+- React 19.2.1 with TypeScript 5.9.3
+- TanStack Table (v8.21.3) for table state management
 - TanStack Virtual (v3.13.13) for row virtualization
 - Vite (v7.2.7) for build tooling
 - Tailwind CSS (v4.1.17) for styling
 - clsx (v2.1.1) for conditional class management
-- @faker-js/faker (v9.9.0) for data generation
+- @faker-js/faker (v9.3.0) for data generation
 
 ## Development Commands
 
 ```bash
 # Start development server
-npm start
+pnpm start
 # or
-npm run dev
+pnpm dev
 
 # Build for production
-npm run build
-
-# Preview production build
-npm run preview
+pnpm build
 
 # Generate strain data (default: 500 entries)
-npm run generate-data
+pnpm generate-data
 
 # Generate specific number of entries
-npm run generate-data 250
+pnpm generate-data 250
 
 # Format code
-npm run format
+pnpm format
 ```
 
 ## Architecture
